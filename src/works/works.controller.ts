@@ -43,7 +43,7 @@ export class WorksController {
   } // softDelete?
 
   @Patch('/restore/:id')
-  restore(@Param('id') id: string, @Body() updateWorkDto: UpdateWorkDto) {
-    return this.worksService.update(+id, updateWorkDto);
-  } // ??????
+  restore(@Param('id') id: string) {
+    return this.worksService.restore(+id);
+  }
 }

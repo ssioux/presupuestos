@@ -58,15 +58,18 @@ export class WorksService {
     return await this.worksRepository.findBy({ name });
   }
 
-  update(id: number, updateWorkDto: UpdateWorkDto) {
-    return this.worksRepository.update(id, updateWorkDto);
+  async update(id: number, updateWorkDto: UpdateWorkDto) {
+    const work = await this.worksRepository.findOneBy({ id });
+    if (!work) {
+      throw new BadRequestException('work doesnt exist');
+    }
+    return await this.worksRepository.update(id, updateWorkDto);
   }
-
-  restore(id: number, updateWorkDto: UpdateWorkDto) {
-    return this.worksRepository.update(id, updateWorkDto);
-  } // deleteAt null
-
-  remove(id: number) {
-    return this.worksRepository.softDelete({ id }); // borrado logico con softdelete
+  // softDelete
+  async remove(id: number) {
+    return await this.worksRepository.softDelete({ id });
+  }
+  async restore(id: number) {
+    return await this.worksRepository.restore(id);
   }
 }
