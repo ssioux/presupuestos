@@ -1,12 +1,4 @@
-import { Type } from 'class-transformer';
-import {
-  IsNumber,
-  IsObject,
-  IsOptional,
-  IsString,
-  MinLength,
-  ValidateNested,
-} from 'class-validator';
+import { IsNumber, IsObject, IsOptional, IsString, MinLength } from 'class-validator';
 import { Section } from 'src/sections/entities/section.entity';
 
 export class CreateWorkDto {

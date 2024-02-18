@@ -1,4 +1,4 @@
-import { IsOptional, IsString, MinLength } from 'class-validator';
+import { IsIn, IsOptional, IsString, MinLength } from 'class-validator';
 
 export class CreateSectionDto {
   @IsString()
@@ -7,6 +7,6 @@ export class CreateSectionDto {
   @IsString()
   @MinLength(1)
   name: string;
-  @IsString()
+  @IsIn(['all-terrain', 'car', 'motorbike', 'tow-vehicle'])
   vehicle: string;
 }

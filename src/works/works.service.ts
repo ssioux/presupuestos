@@ -31,16 +31,27 @@ export class WorksService {
     return this.worksRepository.save(newWork);
   }
 
-  findAll() {
-    return this.worksRepository.find();
+  async findAll() {
+    return await this.worksRepository.find();
   }
 
-  findOne(id: number) {
-    return this.worksRepository.findOneBy({ id });
+  async findOne(id: number) {
+    return await this.worksRepository.findOneBy({ id });
   }
 
-  findEachVehicles(vehicle: string) {
-    return `This action returns the #${vehicle} works`;
+  async findEachVehicles(vehicle: string) {
+    const sectionVehicle = await this.sectionsRepository.findOneBy({
+      vehicle: vehicle,
+    });
+    if (!sectionVehicle) {
+      throw new BadRequestException('vehicle not found');
+    }
+
+    const findWorksByIdVehicle = await this.worksRepository.findBy({
+      section: sectionVehicle,
+    });
+
+    return findWorksByIdVehicle;
   }
 
   findCarWorks(name: string) {

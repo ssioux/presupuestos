@@ -22,7 +22,7 @@ export class WorksController {
     return this.worksService.findOne(+id);
   }
 
-  @Get('/vehicle/name-vehicle')
+  @Get('/:vehicle/name-vehicle')
   findEachVehicles(@Param('vehicle') vehicle: string) {
     return this.worksService.findEachVehicles(vehicle);
   } // search every selected vehicle in the database
