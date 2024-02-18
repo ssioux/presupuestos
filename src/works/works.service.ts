@@ -47,15 +47,15 @@ export class WorksService {
       throw new BadRequestException('vehicle not found');
     }
 
-    const findWorksByIdVehicle = await this.worksRepository.findBy({
+    const findWorksByVehicle = await this.worksRepository.findBy({
       section: sectionVehicle,
     });
 
-    return findWorksByIdVehicle;
+    return findWorksByVehicle;
   }
 
-  findCarWorks(name: string) {
-    return `This action returns the #${name} works`;
+  async findCarWorks(name: string) {
+    return await this.worksRepository.findBy({ name });
   }
 
   update(id: number, updateWorkDto: UpdateWorkDto) {
