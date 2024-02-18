@@ -31,9 +31,7 @@ export class CreateWorkDto {
   @IsOptional()
   priceGapMod?: number;
   @IsObject()
-  @ValidateNested()
-  @Type(() => Section)
-  readonly section: Section;
+  section: Section;
   @IsOptional()
   deleteAt: Date;
 }

@@ -24,7 +24,7 @@ export class WorksService {
       throw new BadRequestException('section not found');
     }
 
-    const newWork = await this.worksRepository.create({
+    const newWork = this.worksRepository.create({
       ...createWorkDto,
       section,
     });

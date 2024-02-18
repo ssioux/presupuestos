@@ -4,7 +4,6 @@ import {
   Column,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -54,7 +53,6 @@ export class Work {
     cascade: true,
     eager: true,
   })
-  @JoinColumn()
   section: Section;
 
   @DeleteDateColumn() // for softdelete
