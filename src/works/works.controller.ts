@@ -8,8 +8,22 @@ export class WorksController {
   constructor(private readonly worksService: WorksService) {}
 
   @Post()
-  create(@Body() createWorkDto: CreateWorkDto) {
-    return this.worksService.create(createWorkDto);
+  async create(@Body() createWorkDto: CreateWorkDto) {
+    return await this.worksService.create(createWorkDto);
+    // try {
+    //   return await this.worksService.create(createWorkDto);
+    // } catch (error) {
+    //   throw new HttpException(
+    //     {
+    //       status: HttpStatus.FORBIDDEN,
+    //       error: 'something went wrong',
+    //     },
+    //     HttpStatus.FORBIDDEN,
+    //     {
+    //       cause: error,
+    //     },
+    //   );
+    // }
   }
 
   @Get()

@@ -61,13 +61,13 @@ export class Work {
   @BeforeInsert()
   sumPrices() {
     if (this.price2 > 0) {
-      this.price2 = this.price2 + this.price1;
+      this.price2 = +this.price2 + this.price1;
     }
     if (this.price3 > 0) {
-      this.price3 = this.price3 + this.price2;
+      this.price3 = +this.price3 + this.price2;
     }
     if (this.price4 > 0) {
-      this.price4 = this.price4 + this.price3;
+      this.price4 = +this.price4 + this.price3;
     }
   }
 }

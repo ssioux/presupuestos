@@ -19,16 +19,30 @@ export class WorksService {
     const section = await this.sectionsRepository.findOneBy({
       name: createWorkDto.section.name,
     });
+    console.log('🚀 ~ WorksService ~ create ~ section:', section);
 
     if (!section) {
-      throw new BadRequestException('section not found');
-    }
+      const createSection = this.sectionsRepository.create({
+        description: createWorkDto.section.description,
+        name: createWorkDto.section.name,
+        vehicle: createWorkDto.section.vehicle,
+      });
+      console.log('🚀 ~  createSection:', createSection);
 
-    const newWork = this.worksRepository.create({
-      ...createWorkDto,
-      section,
-    });
-    return this.worksRepository.save(newWork);
+      const sectionSaved = await this.sectionsRepository.save(createSection);
+      console.log('🚀  sectionSaved:', sectionSaved);
+      const nWork = this.worksRepository.create({
+        ...createWorkDto,
+        section: sectionSaved,
+      });
+      return this.worksRepository.save(nWork);
+    } else {
+      const newWork = this.worksRepository.create({
+        ...createWorkDto,
+        section,
+      });
+      return this.worksRepository.save(newWork);
+    }
   }
 
   async findAll() {
