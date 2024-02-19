@@ -22,7 +22,14 @@ import { SectionsModule } from './sections/sections.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       autoLoadEntities: true, // entities: [] putting the entities for ORM to create the table
-      synchronize: true, // not recommended for production
+      synchronize: false, // "true" - not recommended for production
+      // Migration path
+      migrations: [
+        'build/work/migrations/*.js',
+        'build/section/migrations/*.js',
+        'build/client/migrations/*.js',
+        'build/budget/migrations/*.js',
+      ],
     }),
     SectionsModule,
   ],

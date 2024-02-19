@@ -7,6 +7,6 @@ export class CreateSectionDto {
   @IsString()
   @MinLength(1)
   name: string;
-  @IsIn(['all-terrain', 'car', 'motorbike', 'tow-vehicle'])
+  @IsIn(['car', 'a-terrain', 'housing-vehicle', 'motorbike'])
   vehicle: string;
 }

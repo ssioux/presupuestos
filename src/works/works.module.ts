@@ -10,5 +10,6 @@ import { SectionsService } from 'src/sections/sections.service';
   imports: [TypeOrmModule.forFeature([Work]), SectionsModule],
   controllers: [WorksController],
   providers: [WorksService, SectionsService],
+  exports: [TypeOrmModule],
 })
 export class WorksModule {}

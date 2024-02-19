@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -58,7 +58,7 @@ export class WorksService {
       vehicle: vehicle,
     });
     if (!sectionVehicle) {
-      throw new BadRequestException('vehicle not found');
+      throw new NotFoundException('vehicle not found');
     }
 
     const findWorksByVehicle = await this.worksRepository.findBy({
