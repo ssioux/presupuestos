@@ -7,7 +7,7 @@ import { BudgetsModule } from './budgets/budgets.module';
 import { ClientsModule } from './clients/clients.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SectionsModule } from './sections/sections.module';
-import { dataSourceOptions } from './db/data-source';
+import { dataSourceOptions } from '../db/data-source';
 
 @Module({
   imports: [
