@@ -7,6 +7,7 @@ import { BudgetsModule } from './budgets/budgets.module';
 import { ClientsModule } from './clients/clients.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SectionsModule } from './sections/sections.module';
+import { dataSourceOptions } from './db/data-source';
 
 @Module({
   imports: [
@@ -14,16 +15,7 @@ import { SectionsModule } from './sections/sections.module';
     WorksModule,
     BudgetsModule,
     ClientsModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      autoLoadEntities: true, // entities: [] putting the entities for ORM to create the table
-      synchronize: false, // "true" - not recommended for production
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     SectionsModule,
   ],
   controllers: [AppController],
