@@ -83,6 +83,11 @@ export class WorksService {
   async remove(id: number) {
     return await this.worksRepository.softDelete({ id });
   }
+
+  // DELETE
+  // async delete(id: number) {
+  //   return await this.worksRepository.delete({ id });
+  // }
   async restore(id: number) {
     return await this.worksRepository.restore(id);
   }

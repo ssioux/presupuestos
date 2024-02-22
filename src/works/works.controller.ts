@@ -49,12 +49,17 @@ export class WorksController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateWorkDto: UpdateWorkDto) {
     return this.worksService.update(+id, updateWorkDto);
-  } // section no update
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.worksService.remove(+id);
-  } // softDelete?
+  } // softDelete
+
+  // @Delete(':id')
+  // delete(@Param('id') id: string) {
+  //   return this.worksService.delete(+id);
+  // } // softDelete?
 
   @Patch('/restore/:id')
   restore(@Param('id') id: string) {

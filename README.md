@@ -17,4 +17,9 @@
 ``` 
 docker-compose up -d
 ```
-6- correr servidor: ``` npm run start:dev ```
+6. correr servidor: ``` npm run start:dev ```
+
+7. Correr migración con la data inicial:
+``` 
+npm run migration:run
+```

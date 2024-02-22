@@ -1,4 +1,4 @@
-import { IsNumber, IsObject, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsDecimal, IsNumber, IsObject, IsOptional, IsString, MinLength } from 'class-validator';
 import { Section } from 'src/sections/entities/section.entity';
 
 export class CreateWorkDto {
@@ -9,6 +9,7 @@ export class CreateWorkDto {
   @IsOptional()
   description?: string;
   @IsNumber()
+  @IsDecimal()
   price1: number;
   @IsNumber()
   @IsOptional()

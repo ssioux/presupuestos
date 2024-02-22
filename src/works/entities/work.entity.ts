@@ -22,11 +22,6 @@ export class Work {
   })
   description?: string;
 
-  @Column('text', {
-    default: '',
-  })
-  newField?: string;
-
   @Column('decimal', { scale: 2 })
   price1: number;
 
