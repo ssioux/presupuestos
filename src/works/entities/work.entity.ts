@@ -1,4 +1,3 @@
-import { Budget } from 'src/budgets/entities/budget.entity';
 import { Section } from 'src/sections/entities/section.entity';
 import {
   BeforeInsert,

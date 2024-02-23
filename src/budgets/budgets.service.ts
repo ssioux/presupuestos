@@ -47,8 +47,8 @@ export class BudgetsService {
     }
   }
 
-  findAll() {
-    return `This action returns all budgets`;
+  async findAll() {
+    return await this.budgetsRepository.find();
   }
 
   findLastDays(days: number) {
