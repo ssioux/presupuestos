@@ -55,8 +55,8 @@ export class BudgetsService {
     return `This action returns all budgets from the last #${days} days`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} budget`;
+  async findOne(id: number) {
+    return await this.budgetsRepository.findOneBy({ id });
   }
 
   update(id: number, updateBudgetDto: UpdateBudgetDto) {
