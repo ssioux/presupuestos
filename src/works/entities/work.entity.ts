@@ -1,3 +1,4 @@
+import { Budget } from 'src/budgets/entities/budget.entity';
 import { Section } from 'src/sections/entities/section.entity';
 import {
   BeforeInsert,
@@ -54,6 +55,12 @@ export class Work {
     eager: true,
   })
   section: Section;
+
+  // @ManyToOne(() => Budget, (budget) => budget.id, {
+  //   cascade: true,
+  //   eager: true,
+  // })
+  // budget: Budget;
 
   @DeleteDateColumn() // for softdelete
   deleteAt: Date;

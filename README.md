@@ -19,7 +19,13 @@ docker-compose up -d
 ```
 6. correr servidor: ``` npm run start:dev ```
 
-7. Correr migración con la data inicial:
+7. Generar migración:
+``` 
+npm run migration:generate ./db/migrations/<migration-name>
+```
+8. Correr migración:
 ``` 
 npm run migration:run
 ```
+9. Insertar Data inicial desde JSON.file
+http://localhost:3000/api/seed

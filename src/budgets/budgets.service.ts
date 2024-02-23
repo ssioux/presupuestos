@@ -17,7 +17,7 @@ export class BudgetsService {
 
   async create(createBudgetDto: CreateBudgetDto) {
     const client = await this.clientsRepository.findOneBy({
-      lastName: createBudgetDto.client.lastName,
+      lastName: createBudgetDto.client.phone || createBudgetDto.client.email,
     });
     console.log('🚀 ~ client: ', client);
 

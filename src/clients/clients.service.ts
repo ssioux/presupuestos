@@ -11,11 +11,13 @@ export class ClientsService {
     private clientsRepository: Repository<Client>,
   ) {}
 
-  create(createClientDto: CreateClientDto) {
-    const newClient = this.clientsRepository.create(createClientDto);
-    return this.clientsRepository.save(newClient);
+  async create(createClientDto: CreateClientDto) {
+    this.clientsRepository.create(createClientDto);
+    return 'pepe';
+    // return this.clientsRepository.save(newClient);
   }
+  // devuelve todos los clientes
   findAll() {
-    return `This action returns all clients`;
+    return this.clientsRepository.find();
   }
 }
