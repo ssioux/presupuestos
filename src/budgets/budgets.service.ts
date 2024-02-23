@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
 import { Budget } from './entities/budget.entity';
@@ -14,13 +14,13 @@ export class BudgetsService {
     @InjectRepository(Client)
     private readonly clientsRepository: Repository<Client>,
   ) {}
-
+  // create a new budget
   async create(createBudgetDto: CreateBudgetDto) {
     const client = await this.clientsRepository.findOneBy({
       lastName: createBudgetDto.client.phone || createBudgetDto.client.email,
     });
     console.log('🚀 ~ client: ', client);
-
+    // if the clients doesnt exist is created
     if (!client) {
       const createClient = this.clientsRepository.create({
         description: createBudgetDto.client.description,
@@ -46,24 +46,32 @@ export class BudgetsService {
       return this.budgetsRepository.save(newBudget);
     }
   }
-
+  // find all budgets
   async findAll() {
     return await this.budgetsRepository.find();
   }
-
+  // find budgets in the last # days
   findLastDays(days: number) {
     return `This action returns all budgets from the last #${days} days`;
   }
-
+  // find one budget by id
   async findOne(id: number) {
     return await this.budgetsRepository.findOneBy({ id });
   }
-
-  update(id: number, updateBudgetDto: UpdateBudgetDto) {
-    return `This action updates a #${id} budget`;
+  // updates one budget by id
+  async update(id: number, updateBudgetDto: UpdateBudgetDto) {
+    const budget = await this.budgetsRepository.findOneBy({ id });
+    if (!budget) {
+      throw new BadRequestException('budget doesnt exist');
+    }
+    return await this.budgetsRepository.update(id, updateBudgetDto);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} budget`;
+  // budget softdelete
+  async remove(id: number) {
+    return await this.budgetsRepository.softDelete({ id });
+  }
+  // restore budget softdelete
+  async restore(id: number) {
+    return await this.budgetsRepository.restore(id);
   }
 }

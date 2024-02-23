@@ -36,4 +36,9 @@ export class BudgetsController {
   remove(@Param('id') id: string) {
     return this.budgetsService.remove(+id);
   } // softDelete
+
+  @Patch('/restore/:id')
+  restore(@Param('id') id: string) {
+    return this.budgetsService.restore(+id);
+  }
 }
