@@ -29,3 +29,7 @@ npm run migration:run
 ```
 9. Insertar Data inicial desde JSON.file
 http://localhost:3000/api/seed
+
+__________________________________
+
+### Documentación (swagger): ``` http://localhost:3000/docs  ```
