@@ -1,5 +1,4 @@
-import { Budget } from 'src/budgets/entities/budget.entity';
-import { Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export class Client {
   @PrimaryGeneratedColumn()
@@ -15,14 +14,14 @@ export class Client {
 
   @Column()
   firstName?: string;
-  @Column('text')
+  @Column()
   lastName: string;
   //   @Column('text') // find operation concatenate
   //   name: string;
   @Column()
-  phone?: string;
+  phone?: number;
   @Column()
   type: string;
-  @OneToMany(() => Budget, (budget) => budget.client)
-  budget: Budget[];
+  // @OneToMany(() => Budget, (budget) => budget.client)
+  // budget: Budget[];
 }

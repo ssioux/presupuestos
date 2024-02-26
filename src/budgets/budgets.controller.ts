@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BudgetsService } from './budgets.service';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('budgets')
 @Controller('budgets')
 export class BudgetsController {
   constructor(private readonly budgetsService: BudgetsService) {}
@@ -30,7 +32,7 @@ export class BudgetsController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBudgetDto: UpdateBudgetDto) {
     return this.budgetsService.update(+id, updateBudgetDto);
-  } // no update user & clients
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

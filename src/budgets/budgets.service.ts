@@ -16,11 +16,17 @@ export class BudgetsService {
   ) {}
   // create a new budget
   async create(createBudgetDto: CreateBudgetDto) {
-    const client = await this.clientsRepository.findOneBy({
-      lastName: createBudgetDto.client.phone || createBudgetDto.client.email,
-    });
+    // * Find the client in DB by Number phone or email
+    // (i think one of this two should be required in the entity) also works selected in the frontend
+    const client =
+      (await this.clientsRepository.findOneBy({
+        phone: createBudgetDto.client.phone,
+      })) ||
+      (await this.clientsRepository.findOneBy({
+        email: createBudgetDto.client.email,
+      }));
     console.log('🚀 ~ client: ', client);
-    // if the clients doesnt exist is created
+    // if the client doesnt exist is created
     if (!client) {
       const createClient = this.clientsRepository.create({
         description: createBudgetDto.client.description,
@@ -33,11 +39,11 @@ export class BudgetsService {
 
       const clientSaved = await this.clientsRepository.save(createClient);
 
-      const nWork = this.budgetsRepository.create({
+      const newBudget = this.budgetsRepository.create({
         ...createBudgetDto,
         client: clientSaved,
       });
-      return this.budgetsRepository.save(nWork);
+      return this.budgetsRepository.save(newBudget);
     } else {
       const newBudget = this.budgetsRepository.create({
         ...createBudgetDto,

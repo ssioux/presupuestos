@@ -18,10 +18,9 @@ export class CreateClientDto {
 
   //   @IsString()
   //   name: string;
-  @IsString()
   @IsPhoneNumber()
   @IsOptional()
-  phone?: string;
+  phone?: number;
   @IsIn(['particular', 'empresa'])
   type: string;
 }

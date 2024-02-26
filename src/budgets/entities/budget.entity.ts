@@ -39,6 +39,6 @@ export class Budget {
   user: number;
   @Column()
   vehicle: string;
-  @OneToMany(() => Work, (work) => work.name)
+  @OneToMany(() => Work, (work) => work.id)
   works: Work[];
 }

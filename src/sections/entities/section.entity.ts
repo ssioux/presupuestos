@@ -1,5 +1,4 @@
-import { Work } from 'src/works/entities/work.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Section {
   @PrimaryGeneratedColumn()
@@ -15,7 +14,4 @@ export class Section {
 
   @Column()
   vehicle: string;
-
-  @OneToMany(() => Work, (work) => work.section)
-  works: Work[];
 }
